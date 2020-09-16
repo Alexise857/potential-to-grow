@@ -1,6 +1,8 @@
-# AlexisAngularProject
+# Alexis Angular Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
+
+Its purpose is to introduce and show most the features we can get from `Angular 10`
 
 ## Development server
 
