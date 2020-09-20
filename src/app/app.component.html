@@ -7,7 +7,15 @@
     <div class="col-xl-12">
   <app-server-element
     *ngFor="let serverElement of serverElements"
-     [srvElement]="serverElement"   ></app-server-element>
+     [srvElement]="serverElement">
+    <p>
+      <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+      <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+    </p>
+<!--    everything you place onto opening and closing tag, it is lost, angular does not care about it-->
+<!--    However there is a directive that changes this-->
+<!--    it is projected into the server component-->
+  </app-server-element>
     </div>
   </div>
 </div>
