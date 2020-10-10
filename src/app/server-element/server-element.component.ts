@@ -9,7 +9,7 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges
+  SimpleChanges, ViewChild, ElementRef
 } from '@angular/core';
 
 @Component({
@@ -27,6 +27,7 @@ export class ServerElementComponent implements OnInit,
   OnDestroy {
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
+  @ViewChild('heading') header: ElementRef;
 
   constructor() {
     console.log('server element constructor called !');
@@ -42,6 +43,7 @@ export class ServerElementComponent implements OnInit,
   ngOnInit(): void {
     // TODO: called once the component is initialized
     console.log('server element ngOnInit called !');
+    console.log(this.header.nativeElement.textContent);
   }
   // this will give us a method which is excecuted on every change detection run
   ngDoCheck(): void {
@@ -69,6 +71,10 @@ export class ServerElementComponent implements OnInit,
     // called after the component's view (and child views) has been initialized
     // called once our view has been rendered
     console.log('ngAfterViewInit Called');
+    // this.header is not undefined like iy is on ngOnInit
+    // Why ?
+    // After view init, gives you access to the template elements
+    console.log(this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked(): void {
