@@ -5,8 +5,15 @@
   <hr>
   <div class="row">
     <div class="col-xl-12">
+      <button class="btn btn-info" (click)="onChangeFirstElemnt()">
+        CallingOnChagesMethod
+      </button>
+      <button class="btn btn-danger" (click)="onDestroyFirts()" >
+        on Destroy method Called
+      </button>
   <app-server-element
     *ngFor="let serverElement of serverElements"
+    [name]="serverElement.name"
      [srvElement]="serverElement">
     <p>
       <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>

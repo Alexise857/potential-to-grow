@@ -19,7 +19,7 @@ export class CockpitComponent implements OnInit {
   }
 
   onAddServer(nameInput: HTMLInputElement) {
-    // nameInput - local reference:  brings us all elements of the properties, get acces to some elements of the template
+    // nameInput - local reference:  brings us all elements of the properties, get access to some elements of the template
     this.serverCreated.emit({
       serverName: nameInput.value,
       serverContent: this.serverContentInput.nativeElement.value
