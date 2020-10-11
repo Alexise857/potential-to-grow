@@ -9,7 +9,10 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges, ViewChild, ElementRef
+  SimpleChanges,
+  ViewChild,
+  ElementRef,
+  ContentChild
 } from '@angular/core';
 
 @Component({
@@ -25,13 +28,17 @@ export class ServerElementComponent implements OnInit,
   AfterViewInit,
   AfterViewChecked,
   OnDestroy {
-  @Input('srvElement') element: {type: string, name: string, content: string};
+  @Input('srvElement') element: { type: string, name: string, content: string };
   @Input() name: string;
+  //  Only works if it's only part of the view
   @ViewChild('heading') header: ElementRef;
+  // Other way, is this approach, if it is part of the content ( what currently inside the ng-content )
+  @ContentChild('contentParagraph') paragraph: ElementRef;
 
   constructor() {
     console.log('server element constructor called !');
   }
+
   // ngOnChanges would run firts
   // It would be called after a bound input property changes
   // ngOnchanges is the only hook that recives an argument
@@ -43,8 +50,10 @@ export class ServerElementComponent implements OnInit,
   ngOnInit(): void {
     // TODO: called once the component is initialized
     console.log('server element ngOnInit called !');
-    console.log(this.header.nativeElement.textContent);
+    console.log('ViewChild --- Oninit', this.header.nativeElement.textContent);
+    console.log('ContentChild --- Oninit', this.paragraph.nativeElement.textContent);
   }
+
   // this will give us a method which is excecuted on every change detection run
   ngDoCheck(): void {
     console.log('ngDOCheck called');
@@ -59,6 +68,7 @@ export class ServerElementComponent implements OnInit,
     // Called after the content (projected via ng-content) has been initialized
     // Meaning of content: is the thing we project into this through ng-content
     console.log('ngAfterContentInit Called');
+    console.log('ContentChild --- ngAfterContentInit', this.paragraph.nativeElement.textContent);
   }
 
   ngAfterContentChecked(): void {
